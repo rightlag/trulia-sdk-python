@@ -17,19 +17,19 @@ class ClientConn(object):
         kwargs['function'] = fn
         kwargs['apikey'] = self.auth
         params = urllib.urlencode(kwargs)
-        url = self.ADDRESS + '&' + params
-        response = requests.get(url)
+        url = self.ADDRESS + '&'
+        response = requests.get(url, params=params)
         if response.status_code not in xrange(200, 300):
             response.raise_for_status()
         root = ET.fromstring(response.text)
         if str(self) == 'LocationInfo':
-            context = root.find('response').find('LocationInfo')
+            context = root.find('response').find(str(self))
             deserialized = LocationInfoResponse(
                 context.find('stateCode').text,
                 context.findall('city')
             )
         elif str(self) == 'TruliaStats':
-            context = root.find('response').find('TruliaStats')
+            context = root.find('response').find(str(self))
             deserialized = TruliaStatsResponse(
                 context.find('location'),
                 context.findall('trafficStats'),
