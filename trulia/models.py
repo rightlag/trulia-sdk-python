@@ -3,7 +3,7 @@
 
 class City(object):
     def __init__(self, id, name, longitude, latitude):
-        self.id = int(id)
+        self.id = id
         self.name = name
         self.longitude = float(longitude)
         self.latitude = float(latitude)

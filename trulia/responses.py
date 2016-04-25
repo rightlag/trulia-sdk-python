@@ -11,8 +11,10 @@ class LocationInfoResponse(object):
         if cities is None:
             cities = []
         else:
-            cities = [City(*[child.text for child in city.getchildren()])
-                      for city in cities]
+            cities = [
+                City(*[child.text for child in city.getchildren()])
+                for city in cities
+            ]
         self.cities = cities
 
     def __repr__(self):
