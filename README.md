@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rightlag/trulia-sdk-python.svg?branch=master)](https://travis-ci.org/rightlag/trulia-sdk-python)
+
 ```python
 from trulia import build
 
