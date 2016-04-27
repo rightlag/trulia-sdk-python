@@ -10,12 +10,12 @@ class ClientConn(object):
     ADDRESS = 'http://api.trulia.com/webservices.php'
 
     def __init__(self, auth):
-        self.auth = auth
+        self._auth = auth
         self.ADDRESS += '?library={}'.format(self)
 
     def _request(self, fn, **kwargs):
         kwargs['function'] = fn
-        kwargs['apikey'] = self.auth
+        kwargs['apikey'] = self._auth
         params = urllib.urlencode(kwargs)
         url = self.ADDRESS + '&'
         response = requests.get(url, params=params)
