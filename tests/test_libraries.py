@@ -1,12 +1,17 @@
+import logging
 import os
+import sys
 import unittest
 
 from trulia import build
 from trulia import LocationInfo
 from trulia import TruliaStats
-from trulia.responses import LocationInfoResponse
 
-_AUTH = os.environ['TRULIA_API_KEY']
+try:
+    _AUTH = os.environ['TRULIA_API_KEY']
+except KeyError:
+    logging.error('can\'t find `TRULIA_API_KEY` environment variable')
+    sys.exit(1)
 
 
 class LocationInfoTestCase(unittest.TestCase):
